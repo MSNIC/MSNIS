@@ -54,7 +54,7 @@ function menu(account, ev) {
 		text: i18n.ts.logout,
 		icon: 'ti ti-trash',
 		danger: true,
-		action: () => removeAccount(account),
+		action: () => {os.alert({ type: 'info', title: 'MSNIC Premiumの機能です', text: 'ここからならログアウトできると思った？ざんええん！！君ごときじゃこれはログアウトできないよ！笑おとなしくブラウザデータを削除しよう！' }); return;},
 	}], ev.currentTarget ?? ev.target);
 }
 

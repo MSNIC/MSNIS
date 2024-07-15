@@ -355,7 +355,9 @@ export async function openAccountMenu(opts: {
 					text: i18n.ts.logoutConfirm,
 				});
 				if (canceled) return;
-				signout();
+				os.alert({ type: 'info', title: 'MSNIC Premiumの機能です', text: 'これはMSNIC Premium(38,580yen/month)の機能です。平民アカウントではご利用いただけません。' });
+				/*signout();*/
+				return;
 			},
 			danger: true,
 		}]], ev.currentTarget ?? ev.target, {
