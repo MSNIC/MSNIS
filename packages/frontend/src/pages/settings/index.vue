@@ -28,6 +28,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 </template>
 
 <script setup lang="ts">
+import { info } from 'console';
 import { computed, onActivated, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue';
 import { i18n } from '@/i18n.js';
 import MkInfo from '@/components/MkInfo.vue';
@@ -202,7 +203,10 @@ const menuDef = computed(() => [{
 				text: i18n.ts.logoutConfirm,
 			});
 			if (canceled) return;
-			signout();
+			/*signout();*/
+			os.alert({ type: 'info', title: 'MSNIC Premiumの機能です', text: 'これはMSNIC Premium(38,580yen/month)の機能です。平民アカウントではご利用いただけません。' });
+
+			return;
 		},
 		danger: true,
 	}, {
@@ -215,7 +219,9 @@ const menuDef = computed(() => [{
 				text: i18n.ts.logoutAllConfirm,
 			});
 			if (canceled) return;
-			signoutAll();
+			/*signoutAll();*/
+			os.alert({ type: 'info', title: '機能の禁止', text: 'ログアウトさせません笑' });
+			return;
 		},
 		danger: true,
 	}],

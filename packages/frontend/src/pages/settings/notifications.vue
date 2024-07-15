@@ -52,6 +52,10 @@ SPDX-License-Identifier: AGPL-3.0-only
 					</I18n>
 				</template>
 			</MkSwitch>
+			<MkSwitch :disabled="!pushRegistrationInServer" :modelValue="false" @update:modelValue="onChangeImportant">
+				<template #label>重要な通知に限定する</template>
+				<template #caption>Renote、リアクションなどの通知はPush通知として送信されず、リプライ、引用、チャット、メンションのみが通知されます。これによって、端末の電池消費量が抑制されます。</template>
+			</MkSwitch>
 		</div>
 	</FormSection>
 </div>
@@ -71,6 +75,7 @@ import { i18n } from '@/i18n.js';
 import { definePageMetadata } from '@/scripts/page-metadata.js';
 import MkPushNotificationAllowButton from '@/components/MkPushNotificationAllowButton.vue';
 import { notificationTypes } from '@/const.js';
+import { miLocalStorage } from '@/local-storage';
 
 const $i = signinRequired();
 
@@ -80,6 +85,17 @@ const allowButton = shallowRef<InstanceType<typeof MkPushNotificationAllowButton
 const pushRegistrationInServer = computed(() => allowButton.value?.pushRegistrationInServer);
 const sendReadMessage = computed(() => pushRegistrationInServer.value?.sendReadMessage || false);
 const userLists = await misskeyApi('users/lists/list');
+const oI = computed(() => 'true');//miLocalStorage.getItem('onlyImportant');
+
+async function onChangeImportant() {
+	let importOnly = oI;
+	if (importOnly.value === 'true') {
+		let result = (await os.confirm({ type: 'question', title: '通知設定の変更', text: '重要な通知以外もプッシュ通知を行いますか？' })).canceled;
+		if (result === true) {
+			os.alert({ type: 'waiting', title: '開発中', text: 'この機能は開発中です。' });
+		}
+	}
+}
 
 async function readAllUnreadNotes() {
 	await os.apiWithDialog('i/read-all-unread-notes');
