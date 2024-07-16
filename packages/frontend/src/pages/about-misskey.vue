@@ -12,7 +12,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 				<div v-panel class="about">
 					<div ref="containerEl" class="container" :class="{ playing: easterEggEngine != null }">
 						<img src="/client-assets/about-icon.png" alt="" class="icon" draggable="false" @load="iconLoaded" @click="gravity"/>
-						<div class="cherrypick">CherryPick</div>
+						<div class="cherrypick">MSNIS</div>
 						<div class="version" @click="whatIsNewCherryPick">v{{ version }}</div>
 						<div class="version" style="font-size: 11px;" @click="whatIsNewMisskey">v{{ basedMisskeyVersion }} (Based on Misskey)</div>
 						<span v-for="emoji in easterEggEmojis" :key="emoji.id" class="emoji" :data-physics-x="emoji.left" :data-physics-y="emoji.top" :class="{ _physics_circle_: !emoji.emoji.startsWith(':') }">
@@ -28,20 +28,20 @@ SPDX-License-Identifier: AGPL-3.0-only
 				<div v-if="$i != null" style="text-align: center;">
 					<MkButton primary rounded inline @click="iLoveCherryPick">I <Mfm text="$[jelly ❤]"/> #CherryPick</MkButton>
 				</div>
-				<FormSection v-if="isKokonect">
-					<template #label>_KOKONECT_</template>
+				<FormSection>
+					<template #label>MSNIS</template>
 					<div class="_gaps_s">
-						<FormLink to="https://status.kokonect.link" external>
+						<FormLink to="https://status.tkngh.jp" external>
 							<template #icon><i class="ti ti-activity"></i></template>
-							{{ i18n.ts._aboutMisskey._kokonect.serverStatus }}
+							サーバーステータス
 							<template #suffix>Server Status</template>
 						</FormLink>
 					</div>
 				</FormSection>
 				<FormSection>
-					<template #label>CherryPick</template>
+					<template #label>MSNIS</template>
 					<div class="_gaps_s">
-						<FormLink to="https://github.com/kokonect-link/cherrypick" external>
+						<FormLink to="https://github.com/MSNIC/MSNIS" external>
 							<template #icon><i class="ti ti-code"></i></template>
 							{{ i18n.ts._aboutMisskey.source }} ({{ i18n.ts._aboutMisskey.original }})
 							<template #suffix>GitHub</template>
