@@ -221,6 +221,10 @@ onMounted(() => {
 
 	&.wallpaper {
 		background: var(--wallpaperOverlay);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+
 		//backdrop-filter: var(--blur, blur(4px));
 	}
 
@@ -252,12 +256,14 @@ onMounted(() => {
 		> .main {
 			min-width: 0;
 			width: 750px;
+			height: 100svh;
 			margin: 0 16px 0 0;
 			border-left: solid 1px var(--divider);
 			border-right: solid 1px var(--divider);
 			border-radius: 0;
-			overflow: clip;
+			overflow: scroll;
 			--margin: 12px;
+			scrollbar-width: 1px;
 		}
 
 		> .widgets {
